@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+    <node pkg="jaguar_experiments" name="velocity" type="cmd_vel_pub" >
+        <rosparam file="$(find jaguar_experiments)/config/cmd_params.yaml" command="load" />
+    </node>
+
+</launch>
