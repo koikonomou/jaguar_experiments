@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+    <node pkg="jaguar_experiments" name="compare_position" type="compare" output="screen"/>
+</launch>
