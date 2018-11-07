@@ -5,6 +5,7 @@
         <rosparam command="load" file="$(find jaguar_experiments)/config/2D_localization.yaml" />
             <remap from="/odometry/filtered" to="/odometry/filtered/tests"/>
             <remap from="/tf" to="/tf/odometry/filtered/tests"/>
+            <remap from="/set_pose" to="/set_pose/tests"/>
 
   </node>
 
