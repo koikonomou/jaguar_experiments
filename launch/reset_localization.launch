@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<launch>
+    <node pkg="jaguar_experiments" name="change_pose_x" type="change_pose_x" output="screen"/>
+</launch>
