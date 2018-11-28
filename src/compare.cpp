@@ -19,13 +19,17 @@ void callback(const nav_msgs::Odometry& msg)
 void encoder_callback(nav_msgs::Odometry msg2)
 {
   geometry_msgs::Point pos;
-  pos.x = p_x.x - msg2.pose.pose.position.x;
+  pos.x = std::abs( p_x.x) - std::abs( msg2.pose.pose.position.x);
 
   std::cout << "True localization pose x : " << p_x.x <<"\n";
   std::cout << "Fake localization pose x : " << msg2.pose.pose.position.x << "\n" ;
   std::cout << "Diff at pose x : " << pos.x << "\n";
-
-
+  if (std::abs(pos.x) > 0.21){
+    ROS_WARN("Don't do it");
+    }
+    else {
+        ROS_WARN("GOOOO");
+    }
 }
 
 int main(int argc, char **argv)
