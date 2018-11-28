@@ -19,12 +19,12 @@ def init():
     pub1 = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
 
     test_msg = Twist()
-    test_msg.linear.x = 0.1
+    test_msg.linear.x = 0.3
     test_msg.linear.y = 0.0
     test_msg.linear.z = 0.0
     # rate = rospy.Rate(10)
     # while not rospy.is_shutdown():
-    timeout = 10
+    timeout = 0.3
     timeout_start = time.time() 
     while time.time() < timeout_start + timeout:
         pub1.publish(test_msg)
