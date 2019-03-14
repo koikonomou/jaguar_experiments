@@ -8,8 +8,9 @@
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/Point.h>
 
-// ros::Publisher pub;
+ros::Publisher pub;
 geometry_msgs::Point p_x;
+geometry_msgs::Point pos;
 
 void callback(const nav_msgs::Odometry& msg)
 { 
@@ -18,7 +19,6 @@ void callback(const nav_msgs::Odometry& msg)
 
 void encoder_callback(nav_msgs::Odometry msg2)
 {
-  geometry_msgs::Point pos;
   pos.x = std::abs( p_x.x) - std::abs( msg2.pose.pose.position.x);
 
   std::cout << "True localization pose x : " << p_x.x <<"\n";
@@ -30,6 +30,7 @@ void encoder_callback(nav_msgs::Odometry msg2)
     else {
         ROS_WARN("GOOOO");
     }
+    pub.publish(pos);
 }
 
 int main(int argc, char **argv)
@@ -40,8 +41,13 @@ int main(int argc, char **argv)
   ros::Subscriber sub1;
   ros::Subscriber sub2;
 
+  std::string in_topic, out_topic;
+  nh.param("out_topic", out_topic, std::string("pose_x/difference"));
+
   sub1 = nh.subscribe("/odometry/filtered", 1, callback);
   sub2 = nh.subscribe("/odometry/filtered/tests", 1, encoder_callback);
+
+  pub = nh.advertise<geometry_msgs::Point> (out_topic, 1);
 
   ros::spin();
 
