@@ -3,12 +3,14 @@ project(jaguar_experiments)
 
 find_package(catkin REQUIRED 
   geometry_msgs
+  navigation_srv
   nav_msgs
   roscpp
   rospy
   sensor_msgs)
 
-catkin_package()
+catkin_package( 
+    CATKIN_DEPENDS navigation_srv)
 
 include_directories(
   ${catkin_INCLUDE_DIRS})
